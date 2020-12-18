@@ -10,6 +10,8 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ServerErrorComponent } from './_errors/server-error/server-error.component';
 import { TestErrorsComponent } from './_errors/test-errors/test-errors.component';
+import { MemberEditComponent } from './components/members/member-edit/member-edit.component';
+import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,8 +20,9 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      { path: 'members', component: MemberListComponent, canActivate: [AuthGuard] },
+      { path: 'members', component: MemberListComponent },
       { path: 'members/:username', component: MemberDetailComponent },
+      { path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard] },
       { path: 'lists', component: ListsComponent },
       { path: 'messages', component: MessagesComponent },
     ]
