@@ -26,11 +26,6 @@ export class AccountService {
     );
   }
 
-  logout() {
-    localStorage.removeItem('user');
-    this.currentUserSource.next(null);
-  }
-
   register(model: any) {
     return this.http.post(this.baseUrl + 'account/register', model).pipe(
       map((user: IUser) => {
@@ -43,9 +38,24 @@ export class AccountService {
       })
     )
   }
- 
+
   setCurrentUser(user: IUser) {
+    user.roles = [];
+    const roles = this.getDecodedToken(user.token).role;
+    // if user has only one role "Member" typically, it comes 
+    // back as a simple string, not an array of strings...
+    // we want an array - which is what user.roles expects
+    Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
+  }
+
+  logout() {
+    localStorage.removeItem('user');
+    this.currentUserSource.next(null);
+  }
+
+  getDecodedToken(token) {
+    return JSON.parse(atob(token.split('.')[1]));
   }
 }
