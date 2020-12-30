@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { take } from 'rxjs/operators';
-import { Member } from 'src/app/_models/member.interface';
+import { IMember } from 'src/app/_models/member.interface';
 import { Photo } from 'src/app/_models/photo.interface';
-import { User } from 'src/app/_models/user.interface';
+import { IUser } from 'src/app/_models/user.interface';
 import { AccountService } from 'src/app/_services/account.service';
 import { MembersService } from 'src/app/_services/members.service';
 import { environment } from 'src/environments/environment';
@@ -14,11 +14,11 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./photo-editor.component.css']
 })
 export class PhotoEditorComponent implements OnInit {
-  @Input() member: Member;
+  @Input() member: IMember;
   uploader: FileUploader;
   hasBaseDropzoneOver = false;
   baseUrl = environment.apiUrl;
-  user: User;
+  user: IUser;
 
   constructor(private accountService: AccountService, private memberService: MembersService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user)

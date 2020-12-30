@@ -1,4 +1,4 @@
-import { User } from './user.interface';
+import { IUser } from './user.interface';
 
 export class UserParams {
     gender: string;
@@ -8,7 +8,7 @@ export class UserParams {
     pageSize = 5;
     orderBy = 'lastActive'
 
-    constructor(user: User) {
+    constructor(user: IUser) {
         // hmmmm... should be "this.preferredGender" or something...
         this.gender = user.gender === 'female' ? 'male' : 'female';
     }

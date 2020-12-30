@@ -26,6 +26,8 @@ namespace API.Entities
         // UserLike - I believe - is comparable to a matching table
         public ICollection<UserLike> LikedByUsers { get; set; }
         public ICollection<UserLike> LikedUsers { get; set; }
+        public ICollection<Message> MessagesSent { get; set; }
+        public ICollection<Message> MessagesReceived { get; set; }
 
     }
 }

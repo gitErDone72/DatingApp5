@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Member } from 'src/app/_models/member.interface';
-import { Pagination } from 'src/app/_models/pagination';
-import { User } from 'src/app/_models/user.interface';
+import { IMember } from 'src/app/_models/member.interface';
+import { IPagination } from 'src/app/_models/pagination';
+import { IUser } from 'src/app/_models/user.interface';
 import { UserParams } from 'src/app/_models/userParams';
 import { MembersService } from 'src/app/_services/members.service';
 
@@ -12,10 +12,10 @@ import { MembersService } from 'src/app/_services/members.service';
 })
 export class MemberListComponent implements OnInit {
 
-  members: Member[];
-  pagination: Pagination;
+  members: IMember[];
+  pagination: IPagination;
   userParams: UserParams;
-  user: User;
+  user: IUser;
   genderList = [{ value: 'male', display: 'Males' }, { value: 'female', display: 'Females' }]
 
   constructor(private memberService: MembersService) {
