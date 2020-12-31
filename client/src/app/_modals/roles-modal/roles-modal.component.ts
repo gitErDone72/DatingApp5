@@ -9,6 +9,7 @@ import { IUser } from 'src/app/_models/user.interface';
 })
 export class RolesModalComponent implements OnInit {
   @Input() updateSelectedRoles = new EventEmitter();
+  
   user: IUser;
   roles: any[];
 
