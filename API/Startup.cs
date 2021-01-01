@@ -65,7 +65,7 @@ namespace API
             app.UseCors(policy => policy.AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials()
-                .WithOrigins(new string[]{"https://localhost:4200", "https://datingapp0.herokuapp.com/"}));
+                .WithOrigins(new string[]{"https://localhost:4200", "https://datingapp0.herokuapp.com"}));
             app.UseAuthentication();
             app.UseAuthorization();
 
